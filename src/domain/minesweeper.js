@@ -24,8 +24,10 @@ export class Minesweeper {
             for (let j = 0; j < columns; j++) {
                 tempArray.push(field.hidden);
             }
-            this.array.push();
+            this.array.push(tempArray);
         }
+
+        this.array[5][2] = field.question_mark;
 
 
     }
@@ -50,8 +52,7 @@ export class Minesweeper {
      * @return {field}
      */
     getField(x, y) {
-
-        return field.hidden;
+        return this.array[x][y];
     }
 
     /**
@@ -94,6 +95,7 @@ export class Minesweeper {
      * @param {number} y
      */
     toggleFieldState(x, y) {
+
     }
 
     /**
