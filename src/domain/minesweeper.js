@@ -7,7 +7,7 @@ export class Minesweeper {
      * @param {number} columns
      * @param {number | null} bombs
      */
-    constructor(rows, columns, bombs = null) {
+    constructor(rows, columns, bombs = null)  {
         this.rows = rows;
         this.columns = columns;
 
@@ -17,6 +17,17 @@ export class Minesweeper {
             this.bombs = this._calculateDefaultBombs();
         else
             this.bombs = bombs;
+
+        this.array = [];
+        for (let i = 0; i < rows; i++) {
+            let tempArray = [];
+            for (let j = 0; j < columns; j++) {
+                tempArray.push(field.hidden);
+            }
+            this.array.push();
+        }
+
+
     }
 
     /**
@@ -39,6 +50,7 @@ export class Minesweeper {
      * @return {field}
      */
     getField(x, y) {
+
         return field.hidden;
     }
 
@@ -90,7 +102,7 @@ export class Minesweeper {
      * @returns {boolean}
      */
     didWin() {
-        return false;
+            return false;
     }
 
     /**
@@ -99,7 +111,7 @@ export class Minesweeper {
      * @returns {boolean}
      */
     didLoose() {
-        return false;
+            return false;
     }
 
     /**
@@ -107,7 +119,7 @@ export class Minesweeper {
      * @return {number}
      */
     getRemainingBombCount() {
-        return -1;
+        return this.bombs;
     }
 
 }
