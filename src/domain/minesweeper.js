@@ -1,4 +1,5 @@
 import {field} from "./models/field.js";
+import {Coordinates} from "./models/Coordinates";
 
 export class Minesweeper {
 
@@ -18,6 +19,16 @@ export class Minesweeper {
         else
             this.bombs = bombs;
 
+
+        this.bombLoc = [];
+        for (let i = 0; i < this.bombs; i++){
+            let x = Math.floor(Math.random() * columns);
+            let y = Math.floor(Math.random() * rows);
+            let coor = new Coordinates(x, y);
+            this.bombLoc.push(coor);
+        }
+
+
         this.array = [];
         for (let i = 0; i < rows; i++) {
             let tempArray = [];
@@ -26,10 +37,6 @@ export class Minesweeper {
             }
             this.array.push(tempArray);
         }
-
-        this.array[5][2] = field.question_mark;
-
-
     }
 
     /**
@@ -85,7 +92,10 @@ export class Minesweeper {
      * @param {number} y
      */
     reveal(x, y) {
-
+        if(this.array[y][x] === field.flag || this.array[y][x] === field.question_mark)
+          this.array[y][x] !== field.visible;
+        else
+            this.array[y][x] = field.visible;
     }
 
     /**
@@ -95,6 +105,14 @@ export class Minesweeper {
      * @param {number} y
      */
     toggleFieldState(x, y) {
+        if (this.array[y][x] === field.hidden)
+            this.array[y][x] = field.flag;
+
+        else if (this.array[y][x] === field.flag)
+            this.array[y][x] = field.question_mark;
+
+        else if ( this.array[y][x] === field.question_mark)
+            this.array[y][x] = field.hidden;
 
     }
 
