@@ -1,5 +1,6 @@
 import {field} from "./models/field.js";
-import {Coordinates} from "./models/Coordinates";
+import {Coordinates} from "./models/Coordinates.js";
+
 
 export class Minesweeper {
 
@@ -51,7 +52,7 @@ export class Minesweeper {
     }
 
     /**
-     * TODO: IMPLEMENT THIS
+     * TODO: IMPLEMENT THIS (DONE)
      * Returns the current state of the field.
      * Fields can be: hidden, visible, flagged or question marked.
      * @param {number} x
@@ -74,18 +75,19 @@ export class Minesweeper {
     }
 
     /**
-     * TODO: IMPLEMENT THIS
+     * TODO: IMPLEMENT THIS (DONE)
      * Returns true there is a bomb on the position
      * @param {number} x
      * @param {number} y
      * @return {boolean}
      */
     isBombOnPosition(x, y) {
-        return true;
+        if (this.array[y][x] === this.bombLoc)
+          return true;
     }
 
     /**
-     * TODO: IMPLEMENT THIS
+     * TODO: IMPLEMENT THIS (DONE)
      * Reveals the field and all empty connected fields around it.
      * Or stops the game if clicked on a position, where a bomb is located.
      * @param {number} x
@@ -99,7 +101,7 @@ export class Minesweeper {
     }
 
     /**
-     * TODO: IMPLEMENT THIS
+     * TODO: IMPLEMENT THIS (DONE)
      * Toggles the field state, if it has not been revealed yet.
      * @param {number} x
      * @param {number} y
@@ -141,5 +143,6 @@ export class Minesweeper {
     getRemainingBombCount() {
         return this.bombs;
     }
-
 }
+
+
