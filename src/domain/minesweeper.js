@@ -82,7 +82,8 @@ export class Minesweeper {
      * @return {boolean}
      */
     isBombOnPosition(x, y) {
-        if (this.bombLoc[y][x] === true)
+        let coor = new Coordinates(x, y);
+        if (this.bombLoc.includes(coor))
             return true;
     }
 
@@ -124,7 +125,8 @@ export class Minesweeper {
      * @returns {boolean}
      */
     didWin() {
-            return false;
+        if (this.isBombOnPosition === false)
+            return true;
     }
 
     /**
@@ -133,7 +135,8 @@ export class Minesweeper {
      * @returns {boolean}
      */
     didLoose() {
-            return false;
+        if (this.isBombOnPosition === true)
+          return false;
     }
 
     /**
