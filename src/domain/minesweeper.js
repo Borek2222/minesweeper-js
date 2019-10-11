@@ -82,8 +82,8 @@ export class Minesweeper {
      * @return {boolean}
      */
     isBombOnPosition(x, y) {
-        if (this.array[y][x] === this.bombLoc)
-          return true;
+        if (this.bombLoc[y][x] === true)
+            return true;
     }
 
     /**
