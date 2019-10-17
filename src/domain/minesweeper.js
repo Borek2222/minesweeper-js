@@ -12,6 +12,7 @@ export class Minesweeper {
     constructor(rows, columns, bombs = null)  {
         this.rows = rows;
         this.columns = columns;
+        this.bombClick = false;
 
         this.isGameOver = false;
 
@@ -28,7 +29,6 @@ export class Minesweeper {
             let coor = new Coordinates(x, y);
             this.bombLoc.push(coor);
         }
-
 
         this.array = [];
         for (let i = 0; i < rows; i++) {
@@ -82,9 +82,13 @@ export class Minesweeper {
      * @return {boolean}
      */
     isBombOnPosition(x, y) {
-        let coor = new Coordinates(x, y);
-        if (this.bombLoc.includes(coor))
-            return true;
+        for (let i = 0; i < this.bombLoc.length; i++) {
+            if (this.bombLoc[i].x === x && this.bombLoc[i].y === y ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -95,10 +99,17 @@ export class Minesweeper {
      * @param {number} y
      */
     reveal(x, y) {
-        if(this.array[y][x] === field.flag || this.array[y][x] === field.question_mark)
-          this.array[y][x] !== field.visible;
+        if (this.array[y][x] === field.flag || this.array[y][x] === field.question_mark)
+            this.array[y][x] !== field.visible;
         else
             this.array[y][x] = field.visible;
+
+        if (this.isBombOnPosition(x,y) === true) {
+            this.isGameOver = true;
+            this.array[y][x] = field.hidden;
+        }
+
+
     }
 
     /**
@@ -125,8 +136,7 @@ export class Minesweeper {
      * @returns {boolean}
      */
     didWin() {
-        if (this.isBombOnPosition === false)
-            return true;
+        return false;
     }
 
     /**
@@ -135,8 +145,8 @@ export class Minesweeper {
      * @returns {boolean}
      */
     didLoose() {
-        if (this.isBombOnPosition === true)
-          return false;
+
+        return false;
     }
 
     /**
