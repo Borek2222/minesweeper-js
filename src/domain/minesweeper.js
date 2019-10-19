@@ -30,6 +30,8 @@ export class Minesweeper {
             this.bombLoc.push(coor);
         }
 
+        console.log(this.bombLoc);
+
         this.array = [];
         for (let i = 0; i < rows; i++) {
             let tempArray = [];
@@ -83,7 +85,7 @@ export class Minesweeper {
      */
     isBombOnPosition(x, y) {
         for (let i = 0; i < this.bombLoc.length; i++) {
-            if (this.bombLoc[i].x === x && this.bombLoc[i].y === y ) {
+            if (this.bombLoc[i].x === x && this.bombLoc[i].y === y) {
                 return true;
             }
         }
@@ -140,13 +142,13 @@ export class Minesweeper {
     }
 
     /**
-     * TODO: IMPLEMENT THIS
+     * TODO: IMPLEMENT THIS (DONE)
      * Returns if the user clicked a bomb and therefore lost.
      * @returns {boolean}
      */
     didLoose() {
-
-        return false;
+        if (this.isGameOver === true)
+            return true;
     }
 
     /**
