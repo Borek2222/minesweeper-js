@@ -5,7 +5,7 @@ window.onload = () => {
             const MinesweeperGUI = module.MinesweeperGUI;
             const component = document.getElementById("game");
 
-            const game = new MinesweeperGUI(component, 10, 10, 5);
+            const game = new MinesweeperGUI(component, 10, 10);
             game.draw();
         });
 };

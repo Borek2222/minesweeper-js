@@ -43,14 +43,19 @@ export class Minesweeper {
     }
 
     /**
-     * TODO: IMPLEMENT THIS
+     * TODO: IMPLEMENT THIS (DONE)
      * Calculate how many bombs should be on the field and return it.
      * The calculation should Depend on the size of the field.
      * @private
      * @return {number} amount of bombs
      */
     _calculateDefaultBombs() {
-        return 10;
+        let defBombs = 15;
+        if (this.rows > 10 && this.rows > 10) {
+            for (let i = 0; i < this.rows; i++)
+                defBombs++;
+        }
+        return defBombs;
     }
 
     /**
@@ -110,8 +115,6 @@ export class Minesweeper {
             this.isGameOver = true;
             this.array[y][x] = field.hidden;
         }
-
-
     }
 
     /**
