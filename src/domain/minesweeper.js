@@ -39,11 +39,6 @@ export class Minesweeper {
             }
             this.array.push(tempArray);
         }
-
-        let x = 0;
-        let y = 0;
-        console.log(this.array[x][y]);
-        console.log(this.getAmountOfSurroundingBombs(x,y));
     }
 
     /**
@@ -127,9 +122,7 @@ export class Minesweeper {
      * @param {number} y
      */
     reveal(x, y) {
-        if (this.array[x][y] === field.flag || this.array[x][y] === field.question_mark)
-            this.array[x][y] !== field.visible;
-        else
+        if (!(this.array[x][y] === field.flag || this.array[x][y] === field.question_mark))
             this.array[x][y] = field.visible;
 
         if (this.isBombOnPosition(x,y) === true) {
@@ -137,18 +130,40 @@ export class Minesweeper {
             this.array[x][y] = field.hidden;
         }
 
-       /* do {
-
-        }
-        while (this.array[x][y === field.visible && this.getAmountOfSurroundingBombs(x,y) === 0])*/
-       this.revealCell();
-
+        this.revealCell(x,y);
     }
 
     revealCell(x,y) {
-        if (this.array[x][y] === field.visible && this.getAmountOfSurroundingBombs(x,y) === 0)
+
+        console.log(x);
+        console.log(y);
+
+        if (this.array[x][y] === field.hidden)
             this.array[x][y] = field.visible;
 
+        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x][y + 1] = field.visible;
+
+        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x +1 ][y] = field.visible;
+
+        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x + 1][y + 1] = field.visible;
+
+        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x - 1][y] = field.visible;
+
+        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x][y - 1] = field.visible;
+
+        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x - 1][y - 1] = field.visible;
+
+        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x - 1][y + 1] = field.visible;
+
+        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x + 1][y - 1] = field.visible;
 
     }
 
