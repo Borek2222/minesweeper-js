@@ -142,29 +142,45 @@ export class Minesweeper {
         if (this.array[x][y] === field.hidden)
             this.array[x][y] = field.visible;
 
-        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x][y + 1] = field.visible;
+        if (this.getAmountOfSurroundingBombs(x,y+1) === 0 && this.array[x][y] === field.hidden)
+            this.revealCell(x)(y+1);
+        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x][y+1] = field.visible;
 
-        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x +1 ][y] = field.visible;
+        if (this.getAmountOfSurroundingBombs(x+1,y) === 0 && this.array[x][y] === field.hidden )
+            this.revealCell(x+1)(y);
+        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x+1][y] = field.visible;
 
-        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x + 1][y + 1] = field.visible;
+        if (this.getAmountOfSurroundingBombs(x+1,y+1) === 0 && this.array[x][y] === field.hidden)
+            this.revealCell(x+1)(y+1);
+        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x+1][y+1] = field.visible;
 
-        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x - 1][y] = field.visible;
+        if (this.getAmountOfSurroundingBombs(x,y-1) === 0 && this.array[x][y] === field.hidden)
+            this.revealCell(x)(y-1);
+        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x][y-1] = field.visible;
 
-        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x][y - 1] = field.visible;
+        if (this.getAmountOfSurroundingBombs(x-1,y) === 0 && this.array[x][y] === field.hidden)
+            this.revealCell(x-1)(y);
+        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x-1][y] = field.visible;
 
-        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x - 1][y - 1] = field.visible;
+        if (this.getAmountOfSurroundingBombs(x-1,y-1) === 0 && this.array[x][y] === field.hidden)
+            this.revealCell(x-1)(y-1);
+        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x-1][y-1] = field.visible;
 
-        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x - 1][y + 1] = field.visible;
+        if (this.getAmountOfSurroundingBombs(x-1,y+1) === 0 && this.array[x][y] === field.hidden)
+            this.revealCell(x-1)(y+1);
+        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x-1][y+1] = field.visible;
 
-        if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x + 1][y - 1] = field.visible;
+        if (this.getAmountOfSurroundingBombs(x+1,y-1) === 0 && this.array[x][y] === field.hidden)
+            this.revealCell(x+1)(y-1);
+        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
+            this.array[x+1][y-1] = field.visible;
     }
 
     /**
@@ -190,7 +206,7 @@ export class Minesweeper {
      * @returns {boolean}
      */
     didWin() {
-        return true;
+        return false;
     }
 
     /**
