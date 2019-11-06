@@ -128,9 +128,6 @@ export class Minesweeper {
      * @param {number} y
      */
     reveal(x, y) {
-        if (!(this.array[x][y] === field.flag || this.array[x][y] === field.question_mark))
-            this.array[x][y] = field.visible;
-
         if (this.isBombOnPosition(x,y) === true) {
             this.isGameOver = true;
             this.array[x][y] = field.hidden;
@@ -139,48 +136,17 @@ export class Minesweeper {
     }
 
     revealCell(x,y) {
-        if (this.array[x][y] === field.hidden)
+        if (this.array[x][y] === field.hidden && this.getAmountOfSurroundingBombs(x,y) === 0) {
             this.array[x][y] = field.visible;
+            this.revealCell(x+1, y);
+            this.revealCell(x-1, y);
+            this.revealCell(x,y+1);
+            this.revealCell(x,y-1);
+        }
 
-        if (this.getAmountOfSurroundingBombs(x,y+1) === 0 && this.array[x][y] === field.hidden)
-            this.revealCell(x)(y+1);
-        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x][y+1] = field.visible;
+        console.log(this.array[x][y] === field.hidden && this.getAmountOfSurroundingBombs(x,y) === 0);
 
-        if (this.getAmountOfSurroundingBombs(x+1,y) === 0 && this.array[x][y] === field.hidden )
-            this.revealCell(x+1)(y);
-        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x+1][y] = field.visible;
 
-        if (this.getAmountOfSurroundingBombs(x+1,y+1) === 0 && this.array[x][y] === field.hidden)
-            this.revealCell(x+1)(y+1);
-        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x+1][y+1] = field.visible;
-
-        if (this.getAmountOfSurroundingBombs(x,y-1) === 0 && this.array[x][y] === field.hidden)
-            this.revealCell(x)(y-1);
-        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x][y-1] = field.visible;
-
-        if (this.getAmountOfSurroundingBombs(x-1,y) === 0 && this.array[x][y] === field.hidden)
-            this.revealCell(x-1)(y);
-        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x-1][y] = field.visible;
-
-        if (this.getAmountOfSurroundingBombs(x-1,y-1) === 0 && this.array[x][y] === field.hidden)
-            this.revealCell(x-1)(y-1);
-        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x-1][y-1] = field.visible;
-
-        if (this.getAmountOfSurroundingBombs(x-1,y+1) === 0 && this.array[x][y] === field.hidden)
-            this.revealCell(x-1)(y+1);
-        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x-1][y+1] = field.visible;
-
-        if (this.getAmountOfSurroundingBombs(x+1,y-1) === 0 && this.array[x][y] === field.hidden)
-            this.revealCell(x+1)(y-1);
-        else if (!this.getAmountOfSurroundingBombs(x,y) > 0)
-            this.array[x+1][y-1] = field.visible;
     }
 
     /**
