@@ -136,17 +136,17 @@ export class Minesweeper {
     }
 
     revealCell(x,y) {
-        if (this.array[x][y] === field.hidden && this.getAmountOfSurroundingBombs(x,y) === 0) {
-            this.array[x][y] = field.visible;
-            this.revealCell(x+1, y);
-            this.revealCell(x-1, y);
-            this.revealCell(x,y+1);
-            this.revealCell(x,y-1);
-        }
-
         console.log(this.array[x][y] === field.hidden && this.getAmountOfSurroundingBombs(x,y) === 0);
 
+        if (this.array[x][y] === field.hidden)
+            this.array[x][y] = field.visible;
 
+        if (!this.array[x][y] === field.hidden && this.getAmountOfSurroundingBombs(x,y) === 0) {
+            this.revealCell(x + 1, y);
+            this.revealCell(x - 1, y);
+            this.revealCell(x, y + 1);
+            this.revealCell(x, y - 1);
+        }
     }
 
     /**
