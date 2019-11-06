@@ -179,7 +179,7 @@ export class Minesweeper {
      * @returns {boolean}
      */
     didWin() {
-        return true;
+        return false;
     }
 
     /**
